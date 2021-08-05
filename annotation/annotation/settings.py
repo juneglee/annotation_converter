@@ -31,14 +31,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.admin', # 관리자 웹 사이트
+    'django.contrib.auth', # 인증 시스템
+    'django.contrib.contenttypes', # 콘텐츠 유형에 대한 프레임 워크
+    'django.contrib.sessions', # 세션 프레임 워크
+    'django.contrib.messages', # 메시지 프레임 워크
+    'django.contrib.staticfiles', # 정적 파일을 관리하기 위한 프레임 워크
     # ---------------------------
     'pybo.apps.PyboConfig',
+    'rest_framework',
+    'fronted.apps.FrontendConfig',
 ]
 
 MIDDLEWARE = [

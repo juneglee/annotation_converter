@@ -1,4 +1,8 @@
 from django.http import HttpResponse
+from rest_framework import generics
+from .serializers import RoomSerializer
+from .models import Room
 
-def index(request):
-    return HttpResponse("장고 기본 설정")
+class RoomView(generics.CreateAPIView):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
