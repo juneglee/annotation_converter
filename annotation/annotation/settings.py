@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     # ---------------------------
     'pybo.apps.PyboConfig',
     'rest_framework',
-    'fronted.apps.FrontendConfig',
+    'frontend.apps.FrontendConfig',
 ]
 
 MIDDLEWARE = [

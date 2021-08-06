@@ -10,21 +10,21 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js?$/,
+                test: /\.js$/,
                 exclude: /node_modules/,
-                use : {
+                use: {
                     loader: "babel-loader"
                 }
             },
         ],
     },
     optimization: {
-        minimize:true,
+        minimize: true,
     },
     plugins: [
         new webpack.DefinePlugin({
-            "process.env"{
-                NODE_ENV: JSON.stringify("production"),
+            "process.env": {
+                NODE_ENV: JSON.stringify("development"),
             },
         }),
     ],
