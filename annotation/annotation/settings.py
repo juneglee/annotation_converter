@@ -41,7 +41,16 @@ INSTALLED_APPS = [
     'pybo.apps.PyboConfig',
     'rest_framework',
     'frontend.apps.FrontendConfig',
+    'corsheaders',
 ]
+
+# Rest_framework
+REST_FRAMEWORK = {  
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ],
+    'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'annotation.urls'

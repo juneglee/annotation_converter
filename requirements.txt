@@ -7,4 +7,6 @@ numpy>=1.7.1
 scipy>=0.13.2
 opencv-python
 
+django
 djangorestframework
+django-cors-headers

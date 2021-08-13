@@ -1,14 +1,14 @@
 from django.shortcuts import render
-from rest_framework import generics, status
-from .serializers import RoomSerializer, CreateRoomSerializer
-from .models import Room
+from rest_framework import generics, serializers, status
+import rest_framework
+from .serializers import RoomSerializer, CreateRoomSerializer, TodoSerializer
+from .models import Room, Todo
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import viewsets
 
 
 # Create your views here.
-
-
 class RoomView(generics.ListAPIView):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
@@ -40,3 +40,7 @@ class CreateRoomView(APIView):
                 return Response(RoomSerializer(room).data, status=status.HTTP_201_CREATED)
 
         return Response({'Bad Request': 'Invalid data...'}, status=status.HTTP_400_BAD_REQUEST)
+
+class TodoViewSet(viewsets.ModelViewSet):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
