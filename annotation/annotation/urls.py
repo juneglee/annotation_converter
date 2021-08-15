@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('pybo/', include('pybo.urls')),
     path('', include('frontend.urls')),
+    path('api/auth/', include('accounts.api.urls')),  # added
 ]

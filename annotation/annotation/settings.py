@@ -42,16 +42,19 @@ INSTALLED_APPS = [
     'rest_framework',
     'frontend.apps.FrontendConfig',
     'corsheaders',
+    'knox',
 ]
 
 # Rest_framework
-REST_FRAMEWORK = {  
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny'
-    ],
+REST_FRAMEWORK = {
+    # 'DEFAULT_PERMISSION_CLASSES': [  # remove
+    #     'rest_framework.permissions.AllowAny'
+    # ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (  # added
+        'knox.auth.TokenAuthentication',
+    ),
     'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
 }
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

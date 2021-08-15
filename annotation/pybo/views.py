@@ -1,12 +1,10 @@
 from django.shortcuts import render
-from rest_framework import generics, serializers, status
-import rest_framework
-from .serializers import RoomSerializer, CreateRoomSerializer, TodoSerializer
-from .models import Room, Todo
+from rest_framework import generics, serializers, status, viewsets, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import viewsets
-
+from .serializers import RoomSerializer, CreateRoomSerializer, TodoSerializer
+from .models import Room, Todo
+from knox.models import AuthToken
 
 # Create your views here.
 class RoomView(generics.ListAPIView):
@@ -42,5 +40,12 @@ class CreateRoomView(APIView):
         return Response({'Bad Request': 'Invalid data...'}, status=status.HTTP_400_BAD_REQUEST)
 
 class TodoViewSet(viewsets.ModelViewSet):
-    queryset = Todo.objects.all()
+    # queryset = Todo.objects.all()
     serializer_class = TodoSerializer
+    permission_classes = [permissions.IsAuthenticated]  # added
+
+    def get_queryset(self):  # added
+        return self.request.user.todos.all()
+
+    def perform_create(self, serializer):  # added
+        serializer.save(owner=self.request.user)
